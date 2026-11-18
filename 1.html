@@ -1,5 +1,59 @@
-<a href="https://github.com/jiminxchris/cheonan1118/blob/main/민원처리_현황_시각화_개선_기획서_수정본.md">
-
-  기획서 보기
-
-</a>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>민원처리 현황 시각화 개선 기획서 | 포트폴리오</title>
+  <style>
+    :root{font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI',sans-serif;color:#17243d;background:#f4f7fc}
+    *{box-sizing:border-box}body{margin:0}.top{background:#101b36;color:white;padding:18px max(22px,calc((100vw - 1040px)/2));display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .brand{font-size:15px;font-weight:800;letter-spacing:.02em}.nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{color:#dbe5f9;text-decoration:none;border:1px solid #506080;border-radius:9px;padding:9px 13px;font-size:13px}.nav a:hover{background:#27395e}
+    .wrap{max-width:1040px;margin:auto;padding:45px 22px 80px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.17em;color:#4168c3}.intro h1{font-size:clamp(26px,4vw,42px);letter-spacing:-.055em;margin:12px 0}.intro p{color:#64748b;line-height:1.7;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:23px 0 28px}.btn{display:inline-flex;align-items:center;gap:6px;background:#255acb;color:white;border:0;border-radius:10px;padding:12px 16px;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer}.btn.secondary{background:white;color:#28406c;border:1px solid #dce3ef}.btn:hover{filter:brightness(.94)}
+    .paper{background:white;border:1px solid #e0e6f2;border-radius:18px;box-shadow:0 15px 45px #263b6210;padding:clamp(22px,5vw,60px);min-height:400px}.state{padding:45px 5px;text-align:center;color:#64748b}.error{color:#b42318}.markdown{font-size:15px;line-height:1.85;overflow-wrap:anywhere}.markdown h1{font-size:29px;margin:0 0 20px}.markdown h2{font-size:23px;margin:42px 0 14px;padding-bottom:12px;border-bottom:1px solid #e3e9f3}.markdown h3{font-size:18px;margin:25px 0 9px}.markdown p,.markdown li{color:#34425a}.markdown ul,.markdown ol{padding-left:24px}.markdown li{margin:5px 0}.markdown hr{border:0;border-top:1px solid #e4e9f3;margin:32px 0}.markdown blockquote{border-left:4px solid #2a62d8;background:#f3f7ff;padding:12px 22px;margin:20px 0;border-radius:0 10px 10px 0}.markdown blockquote p{margin:6px 0}.markdown table{border-collapse:collapse;width:100%;font-size:14px;min-width:430px}.markdown th,.markdown td{border:1px solid #dce5f1;padding:11px 13px;text-align:left;vertical-align:top}.markdown th{background:#f0f5fc;color:#173766}.markdown tr:nth-child(even) td{background:#fafcff}.table-scroll{overflow-x:auto;width:100%;margin:20px 0}.markdown a{color:#215dc4}.markdown code{background:#eef3fb;border-radius:4px;padding:2px 4px}.markdown pre{overflow:auto;background:#f3f6fb;padding:18px;border-radius:10px}.markdown pre code{background:none}
+    footer{color:#8792a6;font-size:12px;text-align:center;margin-top:25px}@media(max-width:600px){.wrap{padding-top:30px}.top{padding:17px 20px}.paper{border-radius:14px}.markdown h2{font-size:20px}}
+  </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+</head>
+<body>
+  <header class="top"><div class="brand">MY PORTFOLIO · PROJECT 01</div><nav class="nav"><a href="index.html">← 메인으로</a><a href="2.html">02 바이브코딩</a><a href="3.html">03 슬라이드</a></nav></header>
+  <main class="wrap">
+    <section class="intro"><div class="eyebrow">PLANNING DOCUMENT</div><h1>민원처리 현황 시각화 개선 기획서</h1><p>GitHub에 저장된 Markdown 문서를 웹페이지에서 직접 보여줍니다.<br>원본 문서를 수정한 뒤 새로고침하면 변경사항을 확인할 수 있습니다.</p></section>
+    <div class="actions"><a class="btn secondary" id="githubLink" target="_blank" rel="noopener noreferrer">GitHub 원본 보기 ↗</a><button class="btn" id="reloadBtn" type="button">↻ 문서 새로고침</button></div>
+    <article class="paper" aria-live="polite"><div id="content" class="markdown"><p class="state">문서를 불러오는 중입니다…</p></div></article>
+    <footer>해당 문서는 GitHub의 공개 저장소에서 실시간으로 불러옵니다.</footer>
+  </main>
+  <script>
+    const FILE = '민원처리_현황_시각화_개선_기획서_수정본.md';
+    const RAW_URL = 'https://raw.githubusercontent.com/jiminxchris/cheonan1118/main/' + encodeURIComponent(FILE);
+    const GITHUB_URL = 'https://github.com/jiminxchris/cheonan1118/blob/main/' + encodeURIComponent(FILE);
+    document.getElementById('githubLink').href = GITHUB_URL;
+    const target = document.getElementById('content');
+    async function loadDocument(){
+      target.innerHTML = '<p class="state">문서를 불러오는 중입니다…</p>';
+      try {
+        const response = await fetch(RAW_URL, {cache:'no-store'});
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const markdown = await response.text();
+        if (!window.marked || !window.DOMPurify) throw new Error('Markdown 렌더링 라이브러리를 불러오지 못했습니다.');
+        marked.setOptions({gfm:true,breaks:true});
+        target.innerHTML = DOMPurify.sanitize(marked.parse(markdown));
+        target.querySelectorAll('table').forEach(table => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-scroll';
+          table.replaceWith(wrapper); wrapper.appendChild(table);
+        });
+        target.querySelectorAll('a[href]').forEach(link=>{
+          if(link.href.startsWith('http')) {link.target='_blank';link.rel='noopener noreferrer';}
+        });
+      } catch (error) {
+        target.innerHTML = '<p class="state error">문서를 불러올 수 없습니다.<br>인터넷 연결과 GitHub 공개 여부를 확인해 주세요.<br><a href="' + GITHUB_URL + '" target="_blank" rel="noopener noreferrer">GitHub에서 문서 직접 보기 ↗</a></p>';
+        console.error('Markdown loading failed:', error);
+      }
+    }
+    document.getElementById('reloadBtn').addEventListener('click',loadDocument);
+    window.addEventListener('load',loadDocument);
+  </script>
+</body>
+</html>
